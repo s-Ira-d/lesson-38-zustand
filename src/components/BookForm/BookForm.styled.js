@@ -2,11 +2,16 @@ import styled from "styled-components";
 
 export const FormContainer = styled.form`
   display: grid;
-  grid-template-columns: 1fr 1fr auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
   gap: 12px;
+  margin-bottom: 24px;
   padding: 20px;
-  margin-bottom: 20px;
-  background: white;
-  border: 1px solid #eee2d8;
-  border-radius: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+
+  button {
+    white-space: nowrap;
+  }
 `;

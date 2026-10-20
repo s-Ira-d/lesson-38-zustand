@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import interactionPlugin from "@fullcalendar/interaction";
-
+import { Temporal } from "temporal-polyfill";
 import { useBookStore } from "../../store/store";
 
 import {
@@ -17,7 +17,7 @@ import {
 } from "./Calendar.styled";
 
 const formatDate = (dateString) =>
-  new Date(`${dateString}T12:00:00`).toLocaleDateString("en-GB", {
+  Temporal.PlainDate.from(dateString).toLocaleString("en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric",

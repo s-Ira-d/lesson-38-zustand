@@ -4,29 +4,33 @@ import {
   BookCard,
   BookCover,
   BookInfo,
-  BookActions,
   StatusBadge,
+  BookActions,
 } from "./BookItem.styled";
 
-export const BookItem = ({ book }) => {
-  const removeBook = useBookStore((state) => state.removeBook);
-  const changeStatus = useBookStore((state) => state.changeStatus);
+const statusLabels = {
+  unread: "Want to read",
+  reading: "Currently reading",
+  read: "Finished",
+};
 
-  const statusLabels = {
-    unread: "Want to read",
-    reading: "Currently reading",
-    read: "Finished",
-  };
+export const BookItem = ({ book }) => {
+  const changeStatus = useBookStore((state) => state.changeStatus);
+  const removeBook = useBookStore((state) => state.removeBook);
 
   return (
     <BookCard>
       <BookCover>
-        <img src={book.cover} alt={`Cover of ${book.title}`} />
+        {book.cover ? (
+          <img src={book.cover} alt={`Cover of ${book.title}`} />
+        ) : (
+          <div>No cover</div>
+        )}
       </BookCover>
 
       <BookInfo>
         <StatusBadge $status={book.status}>
-          {statusLabels[book.status]}
+          {statusLabels[book.status] ?? book.status}
         </StatusBadge>
 
         <h2>{book.title}</h2>
@@ -34,11 +38,10 @@ export const BookItem = ({ book }) => {
 
         <BookActions>
           <label>
-            <span>Reading status</span>
-
+            Reading status
             <select
               value={book.status}
-              onChange={(e) => changeStatus(book.id, e.target.value)}
+              onChange={(event) => changeStatus(book.id, event.target.value)}
             >
               <option value="unread">Want to read</option>
               <option value="reading">Currently reading</option>
@@ -47,11 +50,15 @@ export const BookItem = ({ book }) => {
           </label>
 
           <button
-            type="button"
             className="delete-button"
-            onClick={() => removeBook(book.id)}
+            type="button"
+            onClick={() => {
+              if (window.confirm(`Delete "${book.title}"?`)) {
+                removeBook(book.id);
+              }
+            }}
           >
-            Remove book
+            Delete
           </button>
         </BookActions>
       </BookInfo>

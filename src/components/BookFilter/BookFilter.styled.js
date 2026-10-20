@@ -1,15 +1,9 @@
 import styled from "styled-components";
 
 export const FilterContainer = styled.div`
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
   gap: 12px;
-  margin-bottom: 24px;
-
-  input {
-    flex: 1;
-  }
-
-  select {
-    width: 170px;
+  margin-bottom: 20px;
   }
 `;

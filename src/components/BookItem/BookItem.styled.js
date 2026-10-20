@@ -2,39 +2,35 @@ import styled from "styled-components";
 
 export const BookCard = styled.article`
   display: flex;
-  align-items: stretch;
-  gap: 22px;
+  gap: 18px;
   min-width: 0;
-  padding: 20px;
-  background: #fffdf9;
-  border: 1px solid #e9dfd2;
-  border-radius: 18px;
-  box-shadow: 0 4px 14px rgba(76, 52, 36, 0.04);
+  padding: 18px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+    border-color 0.2s,
+    transform 0.2s;
 
   &:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 9px 24px rgba(76, 52, 36, 0.09);
+    border-color: #c8d9cb;
+    transform: translateY(-2px);
   }
 `;
 
 export const BookCover = styled.div`
   flex-shrink: 0;
-  width: 125px;
-  height: 185px;
+  width: 112px;
+  height: 166px;
   overflow: hidden;
-  border-radius: 7px;
-  background: #eee2d3;
-  box-shadow: 3px 5px 10px rgba(48, 31, 19, 0.18);
+  background: #edf1e9;
+  border-radius: 9px;
 
   img {
-    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: center;
   }
 `;
 
@@ -47,41 +43,41 @@ export const BookInfo = styled.div`
   justify-content: center;
 
   h2 {
-    margin: 13px 0 8px;
-    color: #4b3428;
-    font-family: "Aref Ruqaa", serif;
-    font-size: 25px;
-    line-height: 1.3;
+    margin: 12px 0 5px;
+    color: var(--color-text);
+    font-size: clamp(17px, 2vw, 21px);
+    line-height: 1.35;
     overflow-wrap: anywhere;
   }
 
   .author {
-    margin: 0 0 20px;
-    color: #978477;
-    font-size: 15px;
+    margin: 0 0 18px;
+    color: var(--color-muted);
+    font-size: 13px;
   }
 `;
 
 export const StatusBadge = styled.span`
-  display: inline-block;
-  padding: 6px 11px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 9px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 700;
 
   color: ${({ $status }) =>
     $status === "read"
-      ? "#547454"
+      ? "#276749"
       : $status === "reading"
-        ? "#996b39"
-        : "#81716a"};
+        ? "#93621c"
+        : "#65716a"};
 
   background: ${({ $status }) =>
     $status === "read"
-      ? "#e6efe2"
+      ? "#e5f4e8"
       : $status === "reading"
-        ? "#f8ebd5"
-        : "#f0e9e2"};
+        ? "#fff1d7"
+        : "#edf0ec"};
 `;
 
 export const BookActions = styled.div`
@@ -89,32 +85,31 @@ export const BookActions = styled.div`
   width: 100%;
   flex-wrap: wrap;
   align-items: flex-end;
-  gap: 12px;
+  gap: 9px;
 
   label {
     display: flex;
+    flex: 1 1 130px;
     flex-direction: column;
-    gap: 6px;
-    color: #887568;
-    font-size: 12px;
+    gap: 5px;
+    color: var(--color-muted);
+    font-size: 11px;
   }
 
   select {
-    max-width: 190px;
-    padding: 9px 11px;
-    font-size: 13px;
-    cursor: pointer;
+    padding: 8px;
+    font-size: 12px;
   }
 
   button.delete-button {
-    padding: 9px 12px;
-    background: transparent;
-    border: 1px solid #e8d5ce;
-    color: #a56d61;
-    font-size: 13px;
+    padding: 8px 10px;
+    color: #a04444;
+    background: #fff;
+    border: 1px solid #efdada;
+    font-size: 12px;
   }
 
   button.delete-button:hover {
-    background: #f8e9e4;
+    background: #fff0f0;
   }
 `;
